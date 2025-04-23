@@ -16,6 +16,9 @@ cosine_sim = cosine_similarity(vectors)
 # Calculate cosine similarity
 similarity = cosine_similarity(vectors)
 
+# Title to index mapping
+indices = pd.Series(movies.index, index=movies['title'])
+
 # Save all 3 objects together
 with open("movie_model.pkl", "wb") as f:
     pickle.dump((cosine_sim, movies, indices), f)
