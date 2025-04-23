@@ -5,13 +5,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 import os
 
-# Load and merge your datasets
-movies = pd.read_csv("movies.csv")  # Ensure this CSV is in your repo
-
-# Preprocess data
-movies['content'] = movies['title'] + ' ' + movies['genres']  # or any other valid columns
-vectorizer = CountVectorizer(stop_words='english')
+movies = pd.read_csv("movies.csv").head(1000)
+movies['content'] = movies['title'] + ' ' + movies['genres']
+vectorizer = TfidfVectorizer(stop_words='english')
 vectors = vectorizer.fit_transform(movies['content'].fillna(''))
+cosine_sim = cosine_similarity(vectors)
 
 
 # Calculate cosine similarity
