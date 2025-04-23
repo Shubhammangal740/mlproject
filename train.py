@@ -16,12 +16,8 @@ cosine_sim = cosine_similarity(vectors)
 # Calculate cosine similarity
 similarity = cosine_similarity(vectors)
 
-# Save the model and data
-with open('movie_model.pkl', 'wb') as f:
-    pickle.dump(similarity, f)
-with open('vectorizer.pkl', 'wb') as f:
-    pickle.dump(vectorizer, f)
-with open('movies_df.pkl', 'wb') as f:
-    pickle.dump(movies, f)
+# Save all 3 objects together
+with open("movie_model.pkl", "wb") as f:
+    pickle.dump((cosine_sim, movies, indices), f)
 
 print("✅ Model and vectorizer saved successfully.")
