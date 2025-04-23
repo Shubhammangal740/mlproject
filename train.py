@@ -9,9 +9,10 @@ import os
 movies = pd.read_csv("movies.csv")  # Ensure this CSV is in your repo
 
 # Preprocess data
-movies['overview'] = movies['overview'].fillna('')
+movies['content'] = movies['title'] + ' ' + movies['genres']  # or any other valid columns
 vectorizer = CountVectorizer(stop_words='english')
-vectors = vectorizer.fit_transform(movies['overview'])
+vectors = vectorizer.fit_transform(movies['content'].fillna(''))
+
 
 # Calculate cosine similarity
 similarity = cosine_similarity(vectors)
